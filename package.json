@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/PeppeL-G/peter-ab-website#readme",
   "dependencies": {
+    "connect-sqlite3": "^0.9.13",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
     "express-session": "^1.17.2",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

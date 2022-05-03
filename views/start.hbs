@@ -1,2 +1,8 @@
 <h1>Welcome!</h1>
 <p>Welcome to Peter AB! We offer products you can use to improve your life.</p>
+{{#if session.isLoggedIn}}
+	<p>Your are logged in now!</p>
+	<form action="/auth/logout" method="post">
+	<input type="submit" value="Logout!">
+	</form>
+{{/if}}

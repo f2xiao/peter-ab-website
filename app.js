@@ -3,6 +3,7 @@ const expressHandlebars = require('express-handlebars')
 const expressSession = require('express-session')
 const productRouter = require('./routers/product-router')
 const authRouter = require('./routers/auth-router')
+const SQLiteStore = require('connect-sqlite3')(expressSession);
 
 const app = express()
 
@@ -16,7 +17,10 @@ app.use(expressSession({
 	secret: "asdsasdadsasdasdasds",
 	saveUninitialized: false,
 	resave: false,
-	// TODO: Save the sessions in a session store.
+	// Save the sessions in a session store.
+	store: new SQLiteStore({
+		db:'sessions.db'
+	}),
 }))
 
 app.use(function(request, response, next){
@@ -32,7 +36,8 @@ app.engine('hbs', expressHandlebars({
 app.use('/products', productRouter)
 app.use('/auth', authRouter)
 
-app.get('/', function(request, response){
+app.get('/', function (request, response) {
+	console.log(request.headers.cookie);
 	response.render('start.hbs')
 })
 
